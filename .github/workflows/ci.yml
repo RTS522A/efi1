@@ -9,5 +9,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
       with:
         msbuild-architecture: x64
+        
+    - uses: actions/checkout@v3
     - name: Build app for release
       run: msbuild Driver\driver.vcxproj -t:rebuild -verbosity:diag -property:Configuration=Release
