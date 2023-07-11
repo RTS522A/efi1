@@ -1,7 +1,13 @@
 name: CI
 on:
   workflow_dispatch:
-  - name: Add msbuild to PATH
-  uses: microsoft/setup-msbuild@v1.1
-  - name: Build app for release
-  run: msbuild src\YourProjectFile.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+      with:
+        msbuild-architecture: x64
+    - name: Build app for release
+      run: msbuild src\YourProjectFile.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
