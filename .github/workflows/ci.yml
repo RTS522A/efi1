@@ -13,3 +13,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build app for release
       run: msbuild Driver\driver.sln -clp:Verbosity=m -t:clean,build -property:Platform=x64 -p:TargetVersion=Windows10 -verbosity:diag -p:InfVerif_AdditionalOptions="/msft /sw1205 /sw1324 /sw1420 /sw1421"  -p:SignToolWS=/fdws -p:DriverCFlagAddOn=/wd4996 -property:Configuration=Release
+    - uses: actions/upload-artifact@v3
+      with:
+          path: efi1\efi1\Driver\x64\Release\driver.sys
