@@ -10,4 +10,4 @@ jobs:
       with:
         msbuild-architecture: x64
     - name: Build app for release
-      run: msbuild src\YourProjectFile.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
+      run: msbuild Driver\driver.vcxproj -t:rebuild -verbosity:diag -property:Configuration=Release
