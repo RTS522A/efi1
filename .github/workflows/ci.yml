@@ -11,10 +11,12 @@ jobs:
         msbuild-architecture: x64
         
     - uses: actions/checkout@v3
+      with:
+          submodules: 'recursive'
     - name: Build Driver for release
       run: msbuild Driver\driver.sln -clp:Verbosity=m -t:clean,build -property:Platform=x64 -p:TargetVersion=Windows10 -verbosity:diag -p:InfVerif_AdditionalOptions="/msft /sw1205 /sw1324 /sw1420 /sw1421"  -p:SignToolWS=/fdws -p:DriverCFlagAddOn=/wd4996 -property:Configuration=Release
     - name: Build Client for release
       run: msbuild Client\Client.sln -clp:Verbosity=m -t:clean,build -property:Platform=x64 -p:TargetVersion=Windows10 -verbosity:diag -p:InfVerif_AdditionalOptions="/msft /sw1205 /sw1324 /sw1420 /sw1421"  -p:SignToolWS=/fdws -p:DriverCFlagAddOn=/wd4996 -property:Configuration=Release
     - uses: actions/upload-artifact@v3
       with:
-          path: Driver\x64\Release, Client\x64\Release
+          path: Driver\x64\Release\, Client\x64\Release\
